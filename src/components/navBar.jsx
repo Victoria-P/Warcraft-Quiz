@@ -6,7 +6,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to="" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           Warcraft Quiz
         </Link>
         <button
@@ -41,7 +41,6 @@ class Navbar extends Component {
             </React.Fragment>
 
             <React.Fragment>
-              <li className="nav-item nav-link active">Hello!</li>
               <li className="nav-item active">
                 <Link to="/logout" className="nav-link">
                   Sign out

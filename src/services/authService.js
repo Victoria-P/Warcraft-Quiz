@@ -1,6 +1,6 @@
 import http from "./httpService";
 
-const tokenKey = "token";
+const tokenKey = "user";
 
 function register({ email, password, username }) {
   return new Promise(async (resolve) => {
@@ -9,11 +9,15 @@ function register({ email, password, username }) {
       password
     );
     const uid = response.user.uid;
-    await http.post("users", uid, {
+    const user = {
       username,
-      favouriteList: null,
-    });
-    localStorage.setItem(tokenKey, uid);
+      level: 0,
+      characterId: 0,
+      id: uid,
+    };
+
+    await http.post("users", uid, user);
+    localStorage.setItem(tokenKey, JSON.stringify(user));
     resolve();
   });
 }
@@ -25,7 +29,9 @@ function login({ email, password }) {
       password
     );
     const uid = response.user.uid;
-    localStorage.setItem(tokenKey, uid);
+    const user = await http.get(`users/${uid}`);
+    console.log(user);
+    localStorage.setItem(tokenKey, JSON.stringify(user));
     resolve();
   });
 }
@@ -40,10 +46,10 @@ function getCurrentUser() {
     const uid = getToken();
     if (uid) {
       const user = await http.get(`users/${uid}`);
-      user.favouriteList = user.favouriteList || [];
+      // user.favouriteList = user.favouriteList || [];
       return resolve(user);
     }
-    resolve(null);
+    localStorage.setItem({ id: 0, level: 0, characterId: 0, username: "User" });
   });
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../common/form";
+import Form from "../form";
 import Joi from "joi-browser";
 import auth from "../../services/authService";
 

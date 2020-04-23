@@ -1,14 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import NavBar from "./components/navBar";
-import GamePage from "./components/gamePage";
+import Router from "./components/router";
+import auth from "./services/authService";
 
 function App() {
+  const user = JSON.parse(auth.getToken());
+
   return (
     <div className="App">
-      <NavBar />
-      <GamePage />
+      <Router user={user && user.characterId !== undefined} />
     </div>
   );
 }
