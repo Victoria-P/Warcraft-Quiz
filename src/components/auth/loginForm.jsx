@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../common/form";
+import Form from "../form";
 import Joi from "joi-browser";
 import auth from "../../services/authService";
 
@@ -19,8 +19,7 @@ class LoginForm extends Form {
 
   doSubmit = async () => {
     const response = await auth.login(this.state.data);
-    console.log(response);
-    window.location = "/";
+    this.props.history.push("/");
   };
 
   render() {
