@@ -1,4 +1,4 @@
-var questions = [
+let questions = [
   {
     question: "What is the original name given to the blood elves?",
     answers: ["Quil'dorei", "Kel'dorei", "Sin'dorei"],
@@ -208,3 +208,5 @@ var questions = [
     correctAnswer: 0,
   },
 ];
+
+export default questions;

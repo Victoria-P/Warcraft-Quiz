@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { fetchDataPending, fetchDataSuccess, fetchDataError } from "../actions";
 
 const config = {
   apiKey: "AIzaSyDy6L5xXg2WRwBR7bSTO-WyO3f5bQpFvbI",
@@ -15,13 +16,14 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 function get(path) {
-  return new Promise((resolve, reject) => {
+  return (dispatch) => {
+    dispatch(fetchDataPending());
     const itemsRef = db.ref(path);
     itemsRef.on("value", (snapshot) => {
       let items = snapshot.val();
-      resolve(items);
+      dispatch(fetchDataSuccess(Object.values(items)));
     });
-  });
+  };
 }
 
 function post(path, id, data) {

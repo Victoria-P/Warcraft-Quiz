@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import CharacterCard from "./heroCard";
-import QuizCard from "./quizCard";
+import QuizCards from "./quizCards";
 import Navbar from "./navBar";
 
 class GamePage extends Component {
   state = {};
+
   render() {
     return (
       <div>
@@ -14,7 +15,7 @@ class GamePage extends Component {
             <CharacterCard />
           </div>
           <div className="col">
-            <QuizCard />
+            <QuizCards />
           </div>
         </div>
       </div>
