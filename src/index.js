@@ -6,26 +6,9 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
 
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import { createStore, applyMiddleware } from "redux";
-// import rootReducer from "./reducers/rootReducer";
-
 import App from "./App";
-
-// import http from "./services/httpService";
-// import { combineReducers } from "redux";
-// import { userReducer } from "./reducers/users";
-import { questionReducer } from "./reducers/questions";
-// import { heroReducer } from "./reducers/heroes";
-
-// const initialState = {
-//   questions: [],
-//   heroes: [],
-//   users: [],
-// };
-
-const store = createStore(questionReducer, applyMiddleware(thunk));
+import store from "./reducers/rootReducer";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
   // <React.StrictMode>

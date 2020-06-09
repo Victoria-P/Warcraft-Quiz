@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CharacterCard from "./heroCard";
+import CharacterCards from "./charactersCards";
 import QuizCards from "./quizCards";
 import Navbar from "./navBar";
 
@@ -11,10 +11,10 @@ class GamePage extends Component {
       <div>
         <Navbar />
         <div className="row">
-          <div className="col-3">
-            <CharacterCard />
+          <div className="col-3 ml-5">
+            <CharacterCards />
           </div>
-          <div className="col">
+          <div className="col-7">
             <QuizCards />
           </div>
         </div>

@@ -1,5 +1,12 @@
 import firebase from "firebase";
-import { fetchDataPending, fetchDataSuccess, fetchDataError } from "../actions";
+import {
+  fetchQuestionsPending,
+  fetchCharactersPending,
+  fetchQuestionsSuccess,
+  fetchCharactersSuccess,
+  fetchQuestionsError,
+  fetchCharactersError,
+} from "../actions";
 
 const config = {
   apiKey: "AIzaSyDy6L5xXg2WRwBR7bSTO-WyO3f5bQpFvbI",
@@ -17,11 +24,15 @@ const db = firebase.database();
 
 function get(path) {
   return (dispatch) => {
-    dispatch(fetchDataPending());
+    path === "questions"
+      ? dispatch(fetchQuestionsPending())
+      : dispatch(fetchCharactersPending());
     const itemsRef = db.ref(path);
     itemsRef.on("value", (snapshot) => {
       let items = snapshot.val();
-      dispatch(fetchDataSuccess(Object.values(items)));
+      path === "questions"
+        ? dispatch(fetchQuestionsSuccess(Object.values(items)))
+        : dispatch(fetchCharactersSuccess(Object.values(items)));
     });
   };
 }
