@@ -2,32 +2,31 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import LoginForm from "./auth/loginForm";
 import RegisterForm from "./auth/registerForm";
-import HeroPage from "./heroPage";
+import CharactersPage from "./charactersPage";
 import NotFound from "./notFound";
 import GamePage from "./gamePage";
 
 const Router = ({ user }) => {
-  console.log(user);
   return (
-    <main className="container">
-      <div className="content">
+    <div>
+      <div>
         <Switch>
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
-          <Route path="/heroes" component={HeroPage} />
+          <Route path="/characters" component={CharactersPage} />
           <Route path="/not-found" component={NotFound} />
 
           <Route
             path="/"
             render={(props) => {
-              if (!user) return <Redirect to="/heroes" />;
+              if (!user) return <Redirect to="/characters" />;
               return <GamePage {...props} />;
             }}
           />
           <Route
             path="/game"
             render={(props) => {
-              if (!user) return <Redirect to="/heroes" />;
+              if (!user) return <Redirect to="/characters" />;
               return <GamePage {...props} />;
             }}
           />
@@ -35,7 +34,7 @@ const Router = ({ user }) => {
           <Redirect to="/not-found" />
         </Switch>
       </div>
-    </main>
+    </div>
   );
 };
 

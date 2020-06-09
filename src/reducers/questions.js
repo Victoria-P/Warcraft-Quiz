@@ -1,7 +1,7 @@
 import {
-  FETCH_DATA_PENDING,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_ERROR,
+  FETCH_QUESTIONS_PENDING,
+  FETCH_QUESTIONS_SUCCESS,
+  FETCH_QUESTIONS_ERROR,
 } from "../actions";
 
 const initialState = {
@@ -10,20 +10,20 @@ const initialState = {
   error: null,
 };
 
-export function questionReducer(state = initialState, action) {
+export function QuestionReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_DATA_PENDING:
+    case FETCH_QUESTIONS_PENDING:
       return {
         ...state,
         pending: true,
       };
-    case FETCH_DATA_SUCCESS:
+    case FETCH_QUESTIONS_SUCCESS:
       return {
         ...state,
         pending: false,
         questions: action.payload,
       };
-    case FETCH_DATA_ERROR:
+    case FETCH_QUESTIONS_ERROR:
       return {
         ...state,
         pending: false,
@@ -34,6 +34,6 @@ export function questionReducer(state = initialState, action) {
   }
 }
 
-export const getQuestions = (state) => state.questions;
-export const getQuestionsPending = (state) => state.pending;
-export const getQuestionsError = (state) => state.error;
+export const getQuestions = (state) => state.QuestionReducer.questions;
+export const getQuestionsPending = (state) => state.QuestionReducer.pending;
+export const getQuestionsError = (state) => state.QuestionReducer.error;
